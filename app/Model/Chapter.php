@@ -49,4 +49,39 @@ class Chapter extends Model
     	return self::where("id",$id)->update($data);
     }
 
+    //小说列表
+    public function getChapterList($novelId)
+    {
+        return self::select("id","novel_id","title")
+                        ->where("novel_id",$novelId)
+                        ->orderBy("sort")
+                        ->get()
+                        ->toArray();
+    }
+    //获取小说第一章节
+    public function getNovelChapter($novelId)
+    {
+        return self::select("id")
+                        ->where("novel_id",$novelId)
+                        ->first();
+    }
+    //获取小说上一章内容
+    public function getPrevChapter($novelId,$sort)
+    {
+        return self::where("novel_id",$novelId)
+                        ->where("sort",$sort-1)
+                        ->first();
+    }
+    //获取小说下一章内容
+    public function getNextChapter($novelId,$sort)
+    {
+        return self::where("novel_id",$novelId)
+                    ->where("sort",$sort+1)
+                    ->first();
+    }
+
+    public function getChapterContent($id)
+    {
+        return self::where("id",$id)->first();
+    }
 }
