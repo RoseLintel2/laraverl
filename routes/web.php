@@ -29,11 +29,33 @@ Route::middleware('check_age')->group( function () {
     });   
 });
 
-Route::group(['prefix'=>"study"],function(){
+Route::prefix('study')->group(function(){
 	Route::any("user","study\BsStudyController@index");
 	Route::any("study/houns","study\BsStudyController@houns");
 	Route::any("study/getHounsLists","study\BsStudyController@getHounsLists");
 	Route::any("study/addHouns","study\BsStudyController@addHouns");
+
+
+	Route::get("guess/add","Study\GuessController@add"); //足球竞猜添加页面
+    Route::any("guess/store","Study\GuessController@store"); //执行足球竞猜添加页面
+    Route::get("guess/list","Study\GuessController@list");//竞猜记录
+
+    Route::get("guess/guess","Study\GuessController@addUserRecord"); //用户竞猜
+    Route::post("guess/doGuess","Study\GuessController@doGuess"); //用户竞猜
+    Route::get("guess/record","Study\GuessController@reCord"); //竞猜结果
+
+
+
+
+    Route::get("exam/add","Study\ExamController@add");
+    Route::post("exam/store","Study\ExamController@store");
+    Route::get("exam/list","Study\ExamController@list");
+
+    Route::get("exam/guess","Study\ExamController@guess");
+    Route::post("exam/doGuess","Study\ExamController@doGuess");
+    Route::get("exam/result","Study\ExamController@result");
+
+
 });
 
 
@@ -162,3 +184,6 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
 
 	###################################[小说相关]##########################
 });
+
+
+
