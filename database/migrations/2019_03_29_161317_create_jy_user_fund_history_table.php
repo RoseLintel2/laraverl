@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminUserRoleTable extends Migration
+class CreateJyUserFundHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateAdminUserRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('AdminUserRole', function (Blueprint $table) {
+        Schema::create('jy_user_fund_history', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("user_id")->comment("用户id");
-            $table->integer("role_id")->comment("角色id");
+            $table->decimal("amount",10,2)->comment("变动金额 负数减少");
+            $table->enum("type",[1,2,3])->comment("1红包奖励 2退款 3转账");
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateAdminUserRoleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('AdminUserRole');
+        Schema::dropIfExists('jy_user_fund_history');
     }
 }

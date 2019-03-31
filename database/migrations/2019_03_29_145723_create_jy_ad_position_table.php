@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminPreRoleTable extends Migration
+class CreateJyAdPositionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAdminPreRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('AdminPreRole', function (Blueprint $table) {
+        Schema::create('jy_ad_position', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("role_id")->comment("角色id");
-            $table->integer("pre_id")->comment("权限id");
+            $table->string("position_name",30)->defaultl("")->comment("广告位名称");
+            $table->string("position_desc")->default("")->comment("广告位描述");
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAdminPreRoleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('AdminPreRole');
+        Schema::dropIfExists('jy_ad_position');
     }
 }

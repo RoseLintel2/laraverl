@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminRoleTable extends Migration
+class CreateJyUserCollectTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAdminRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('AdminRole', function (Blueprint $table) {
+        Schema::create('jy_user_collect', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("rolename")->comment("角色名称");
-            $table->string("role_desc")->default("")->comment("角色描述");
+            $table->integer("user_id")->default(0)->comment("用户id");
+            $table->integer("goods_id")->default(0)->comment("商品id");
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAdminRoleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('AdminRole');
+        Schema::dropIfExists('jy_user_collect');
     }
 }

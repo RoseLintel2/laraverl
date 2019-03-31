@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTable extends Migration
+class CreateJyGoodsGallery extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('bs_user', function (Blueprint $table) {
+        Schema::create('jy_goods_gallery', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("username");
-            $table->timestamps();
+            $table->integer("goods_id")->default(1)->comment("商品id");
+            $table->string("image_name",10)->default("")->comment("图片描述");
+            $table->string("image_url",120)->default("")->comment("图片地址");
         });
     }
 
@@ -27,6 +28,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        //
     }
 }
