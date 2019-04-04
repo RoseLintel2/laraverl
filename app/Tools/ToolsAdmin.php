@@ -36,7 +36,34 @@
 			return $menus;
 		}
 
-		public static  function uploadFile($files){
+		//创建无限极分类
+        public static function buildTreeString($data,$fid=0,$level=0,$fKey="fid")
+        {
+            if(empty($data)){
+                return [];
+            }
+
+            static $tree= [];
+
+            foreach($data as $key => $value){
+
+                //判断当前的父类id是否是递归调用传过来的id
+                if($value[$fKey] == $fid){
+                    $value['level'] = $level;
+
+                    $tree[] = $value;
+
+                    unset($data[$key]);
+
+                    self::buildTreeString($data,$value['id'],$level+1,$fKey);
+                }
+            }
+
+            return $tree;
+        }
+
+		//图片上传
+		public static function uploadFile($files){
 			if(empty($files)){
 				return "";
 			}
@@ -48,7 +75,7 @@
 			}
 
 			$filename = "/".date("YmdHis",time()).rand(0,10000).".".$files->extension();
-					
+
 			@move_uploaded_file($files->path(),$basePath.$filename);
 
 			return '/'.$basePath.$filename;

@@ -103,7 +103,7 @@
                         if(res.code == 2000){
                             that.error_show = false;
                             alert("登录成功");
-                            // window.location.href="/admin/home";
+                             window.location.href="/admin/home";
                         }else{
                             that.error_show = true;
                             that.error_msg = res.msg;
