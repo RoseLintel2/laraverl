@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
+    const
+        USE_ABLE     = 1, //可用
+        USE_DISABLE  = 2,  //不可用
+        END           = true;
+
     protected $table = "jy_brand";
 
     public $timestamps = false;
-    //获取数据列表
-    public static function getBrandLists()
-    {
-        return self::get()->toArray();
-    }
+
     //添加商品品牌
     public static function addRecord($data)
     {

@@ -14,12 +14,16 @@ class BrandController extends Controller
     }
 
     //获取商品品牌数据
-    public function getLists()
+    public function getBrandList()
     {
+        $list = new Brand();
+
+        $data = $this->getLists($list);
+
         $return = [
             "code" => 2000,
             "msg" => "成功",
-            "data" => Brand::getBrandLists()
+            "data" => $data
         ];
 
         return json_encode($return);

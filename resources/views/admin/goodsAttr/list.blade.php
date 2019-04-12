@@ -36,7 +36,11 @@
                         <td>{{$attr->id}}</td>
                         <td>{{$attr->type_name}}</td>
                         <td>{{$attr->attr_name}}</td>
-                        <td>{{$attr->input_type}}</td>
+                        <td>
+                            @if($attr->input_type == 1) 手动输入
+                            @else 从列表中选值
+                            @endif
+                        </td>
                         <td>{{$attr->attr_value}}</td>
                         <td>
                             @if($attr->status == 1)正常
@@ -44,8 +48,8 @@
                             @endif
                         </td>
                         <td>
-                            <a href=""  class="btn btn-sm btn-success">修改</a>
-                            <button class="btn btn-sm btn-warning">删除</button>
+                            <a href="/admin/goods/attr/edit/{{$attr->id}}"  class="btn btn-sm btn-success">修改</a>
+                            <a class="btn btn-sm btn-warning" href="/admin/goods/attr/del/{{$attr->id}}">删除</a>
                         </td>
                     </tr>
                     @endforeach

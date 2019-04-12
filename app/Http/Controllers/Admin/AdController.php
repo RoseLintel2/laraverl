@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Ad;
 use App\Model\AdPosition;
 use App\Tools\ToolsAdmin;
-
+use Excel;
 class AdController extends Controller
 {
     //列表页面
@@ -33,9 +33,16 @@ class AdController extends Controller
     {
         $params = $request->all();;
 
-        if(isset($params['image_url']) &&  !empty($params['image_url'])){
-            $params['image_url'] = ToolsAdmin::uploadFile($params['image_url']);
+        if(!isset($params['image_url']) ||  empty($params['image_url'])){
+            return redirect()->back()->with("msg","请先上传图片");
         }
+
+        $files = $params['image_url'];
+
+        Excel::load($files->path(), function($reader) {
+            $data = $reader->all()->toArray();
+            dd($data);
+        });
 
         $params = $this->delToken($params);
 

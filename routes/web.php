@@ -130,7 +130,7 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
     ###################################[商品品牌相关]##########################
     //商品品牌列表页面
     Route::get("brand/list","Admin\BrandController@list")->name("admin.brand.list");
-    Route::post("brand/getLists","Admin\BrandController@getLists")->name("admin.brand.getLists");
+    Route::post("brand/getLists","Admin\BrandController@getBrandList")->name("admin.brand.getLists");
     //商品品牌添加页面
     Route::get("brand/add","Admin\BrandController@add")->name("admin.brand.add");
     //执行添加商品品牌
@@ -256,6 +256,123 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
     Route::post("goods/attr/doEdit","Admin\GoodsAttrController@doEdit")->name("admin.goods.attr.doEdit");
 
     ###################################[商品分类属性相关]##########################
+
+    ###################################[商品相关]##########################
+    //商品分类列表
+    Route::get("goods/list","Admin\GoodsController@list")->name("admin.goods.list");
+    //列表数据
+    Route::post("goods/get/data","Admin\GoodsController@getGoodsData")->name("admin.goods.get.data");
+    //商品分类添加页面
+    Route::get("goods/add","Admin\GoodsController@add")->name("admin.goods.add");
+    //执行添加
+    Route::post("goods/store","Admin\GoodsController@store")->name("admin.goods.store");
+    //删除商品分类
+    Route::get("goods/del/{id}","Admin\GoodsController@del")->name("admin.goods.del");
+    //修改商品分类页面
+    Route::get("goods/edit/{id}","Admin\GoodsController@edit")->name("admin.goods.edit");
+    //执行修改
+    Route::post("goods/doEdit","Admin\GoodsController@doEdit")->name("admin.goods.doEdit");
+    //修改属性
+    Route::post("goods/change/attr","Admin\GoodsController@changeAttr")->name("admin.goods.change.attr");
+
+    //相册列表
+    Route::any("goods/gallery/list/{goods_id}","Admin\GoodsGalleryController@getGallery")->name("admin.goods.gallery.list");
+    //删除
+    Route::get("goods/gallery/del/{id}","Admin\GoodsGalleryController@del")->name("admin.goods.gallery.del");
+
+    //商品sku属性
+    Route::get("goods/sku/add/{goods_id}","Admin\GoodsSkuController@edit")->name("admin.goods.sku.add");
+    //商品sku属性 重赋值
+    Route::post("goods/sku/doAdd","Admin\GoodsSkuController@doAdd")->name("admin.goods.sku.doAdd");
+    //sku 值列表
+    Route::any("goods/sku/attr/{goodsId}","Admin\GoodsSkuController@getSkuAttr")->name("admin.goods.sku.attr");
+    //sku属性值
+    Route::any("goods/attr/value/{goodsid}","Admin\GoodsSkuController@getAttrValues")->name("admin.goods.attr.value");
+
+
+    //商品导入的页面
+    Route::get('goods/import','Admin\GoodsController@import')->name('admin.goods.import');
+    Route::post('goods/doImport','Admin\GoodsController@doImport')->name('admin.goods.doImport');
+    //商品导出
+    Route::any('goods/export','Admin\GoodsController@export')->name('admin.goods.export');
+    ###################################[商品相关]##########################
+
+    ###################################[评论相关]##########################
+    //评论列表
+    Route::get("comment/list","Admin\CommentController@list")->name("admin.comment.list");
+    //评论删除
+    Route::get("comment/del/{id}","Admin\CommentController@del")->name("admin.comment.del");
+    ###################################[评论相关]##########################
+
+    ###################################[支付相关]##########################
+    //列表
+    Route::get("payment/list","Admin\PaymentController@list")->name("admin.payment.list");
+    //删除
+    Route::get("payment/del/{id}","Admin\PaymentController@del")->name("admin.payment.del");
+    //添加
+    Route::get("payment/add","Admin\PaymentController@add")->name("admin.payment.add");
+    //执行添加
+    Route::post("payment/doAdd","Admin\PaymentController@doAdd")->name("admin.payment.doAdd");
+    //修改
+    Route::get("payment/edit/{id}","Admin\PaymentController@edit")->name("admin.payment.edit");
+    //执行修改
+    Route::post("payment/doEdit","Admin\PaymentController@doEdit")->name("admin.payment.doEdit");
+    ###################################[支付相关]##########################
+
+    ###################################[配送相关]##########################
+    //列表
+    Route::get("shipping/list","Admin\ShippingController@list")->name("admin.shipping.list");
+    //删除
+    Route::get("shipping/del/{id}","Admin\ShippingController@del")->name("admin.shipping.del");
+    //添加
+    Route::get("shipping/add","Admin\ShippingController@add")->name("admin.shipping.add");
+    //执行添加
+    Route::post("shipping/doAdd","Admin\ShippingController@doAdd")->name("admin.shipping.doAdd");
+    ###################################[配送相关]##########################
+
+    ###################################[会员相关]##########################
+    //列表
+    Route::get("member/list","Admin\memberController@list")->name("admin.member.list");
+    ###################################[会员相关]##########################
+
+    ###################################[活动配置相关]##########################
+    //列表
+    Route::get("activity/list","Admin\ActivityController@list")->name("admin.activity.list");
+    //删除
+    Route::get("activity/del/{id}","Admin\ActivityController@del")->name("admin.activity.del");
+    //添加
+    Route::get("activity/add","Admin\ActivityController@add")->name("admin.activity.add");
+    //执行添加
+    Route::post("activity/doAdd","Admin\ActivityController@doAdd")->name("admin.activity.doAdd");
+    //修改
+    Route::get("activity/edit/{id}","Admin\ActivityController@edit")->name("admin.activity.edit");
+    //执行修改
+    Route::post("activity/doEdit","Admin\ActivityController@doEdit")->name("admin.activity.doEdit");
+    ###################################[活动配置相关]##########################
+
+
+    ###################################[地区相关]##########################
+    //列表
+    Route::get("region/list/{id?}","Admin\RegionController@list")->name("admin.region.list");
+    //添加
+    Route::get("region/add","Admin\RegionController@add")->name("admin.region.add");
+    //执行添加
+    Route::post("region/doAdd","Admin\RegionController@doAdd")->name("admin.region.doAdd");
+    //删除
+    Route::get("region/del/{id}","Admin\RegionController@del")->name("admin.region.del");
+    ###################################[地区相关]##########################
+
+    ###################################[地区相关]##########################
+    //列表
+    Route::get("bonus/list/{id?}","Admin\BonusController@list")->name("admin.bonus.list");
+    //添加
+    Route::get("bonus/add","Admin\BonusController@add")->name("admin.bonus.add");
+    //执行添加
+    Route::post("bonus/doAdd","Admin\BonusController@doAdd")->name("admin.bonus.doAdd");
+    //删除
+    Route::get("bonus/del/{id}","Admin\BonusController@del")->name("admin.bonus.del");
+    ###################################[地区相关]##########################
+
 });
 
 

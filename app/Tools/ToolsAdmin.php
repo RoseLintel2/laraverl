@@ -69,7 +69,7 @@
 			}
 
 			$basePath = "uploads/".date("Ymd",time());
-
+//            dd($basePath);
 			if(!file_exists($basePath)){
 				@mkdir($basePath,755,true);
 			}
@@ -119,5 +119,10 @@
 					// dd($urls);
 			return $urls;
 		}
+
+		//商品货号
+        public static function buildGoodsSn($string=16){
+		    return "JY".date("YmdHis",time());
+        }
 	}
  ?>

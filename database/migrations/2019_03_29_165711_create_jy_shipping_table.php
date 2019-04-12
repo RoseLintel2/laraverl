@@ -18,7 +18,7 @@ class CreateJyShippingTable extends Migration
             $table->string("shipping_name",20)->default("")->comment("配送方式名称");
             $table->string("shipping_desc",50)->default("")->comment("配送方式描述");
             $table->smallInteger("fee")->comment("费用");
-            $table->enum("ststus",[1,2])->default(1)->comment("1可用2不可用");
+            $table->enum("status",[1,2])->default(1)->comment("1可用2不可用");
         });
     }
 

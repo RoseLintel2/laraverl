@@ -18,6 +18,7 @@ class Permission extends Model
 
     	$permission = self::select("id","name","fid","url")
     					->where("is_menu",self::IS_MENU)
+                        ->orderBy("id")
     					->orderBy("sort")
     					->get()
     					->toArray();

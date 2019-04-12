@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     const
-        PAGE_SIZE = 5,
+        PAGE_SIZE = 2,
         END        = true;
 
 
@@ -60,9 +60,9 @@ class Controller extends BaseController
     }
 
     //无分页的数据列表
-    public function getLists($object)
+    public function getLists($object,$where=[])
     {
-            return $object->get()->toArray();
+            return $object->where($where)->get()->toArray();
     }
 
     //修改
@@ -75,5 +75,17 @@ class Controller extends BaseController
     public function getListsInfo($object,$where=[])
     {
         return $object->where($where)->paginate(self::PAGE_SIZE);
+    }
+
+    //添加信息返回id
+    public function addDataBackId($object,$params)
+    {
+        return $object->insertGetId($params);
+    }
+
+    //多条添加
+    public function addDataMany($object,$params)
+    {
+        return $object->insert($params);
     }
 }
