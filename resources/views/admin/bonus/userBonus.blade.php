@@ -29,17 +29,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                
-                    <tr>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                    </tr>
-                 
+                        @if(!empty($userBonus))
+                          @foreach($userBonus as $record)
+                            <tr>
+                                <td>{{$record['id']}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>##</td>
+                                <td>##</td>
+                            </tr>
+                          @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

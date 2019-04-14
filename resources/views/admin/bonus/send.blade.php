@@ -33,14 +33,17 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/send/sendStore" method="post">
                 {{csrf_field()}}
 
                 <input type="hidden" name="bonus_id" value="{{$bonus_info->id}}">
+                <input type="hidden" name="start_time" value="{{$bonus_info->send_start_time}}">
+                <input type="hidden" name="end_time" value="{{$bonus_info->send_end_time}}">
+                <input type="hidden" name="status" value="{{$bonus_info->status == 1?1:2}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">红包名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="红包名称" class="form-control" name="bonus_name" value="{{$bonus_info->bonus_name}}"  disabled />
+                        <input type="text" placeholder="红包名称" class="form-control" name="bonus_name" value="{{$bonus_info->honus_name}}"  disabled />
                     </div>
                 </div>
                 <div class="form-group">

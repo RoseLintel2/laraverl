@@ -29,71 +29,63 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">广告编辑表单</h4>
+            <h4 class="panel-title">红包编辑表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/bonus/doEdit" method="post">
                 {{csrf_field()}}
 
-                <input type="hidden" name="id">
+                <input type="hidden" name="id" value="{{$bonusInfo->id}}">
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告位置</label>
+                    <label class="col-sm-3 control-label">红包名称</label>
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option value="1">首页banner</option>
-                        </select>
+                        <input type="text" placeholder="红包名称" class="form-control" name="honus_name" value="{{$bonusInfo->honus_name}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">图片地址</label>
+                    <label class="col-sm-3 control-label">红包金额</label>
                     <div class="col-sm-6">
-                        <input type="file" placeholder="上传文件" class="form-control" name="image_url" value="" />
+                        <input type="text" placeholder="红包金额" class="form-control" name="money" value="{{$bonusInfo->money}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">广告名称</label>
+                    <label class="col-sm-3 control-label">最小使用金额</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="广告名称" class="form-control" name="ad_name" value="" />
+                        <input type="text" placeholder="最小使用金额" class="form-control" name="min_money" value="{{$bonusInfo->min_money}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">链接地址</label>
+                    <label class="col-sm-3 control-label">有效天数</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="链接地址" class="form-control" name="ad_link" value="" />
+                        <input type="text" placeholder="有效天数" class="form-control" name="expires" value="{{$bonusInfo->expires}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">开始时间</label>
+                    <label class="col-sm-3 control-label">发放开始时间</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="开始时间" id="start_time" class="form-control" name="start_time" value="" />
+                        <input type="text" placeholder="开始时间" id="start_time" class="form-control" name="send_start_time" value="{{$bonusInfo->send_start_time}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">结束时间</label>
+                    <label class="col-sm-3 control-label">发放结束时间</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="结束时间" class="form-control" id="end_time" name="end_time" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">点击次数</label>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="点击次数" class="form-control" name="clicks" value="" />
+                        <input type="text" placeholder="结束时间" class="form-control" id="end_time" name="send_end_time" value="{{$bonusInfo->send_end_time}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">状态</label>
                     <div class="col-sm-6">
-                        <div class="radio"><label><input type="radio" name="status" value="1" checked> 开启</label></div>
-                        <div class="radio"><label><input type="radio" name="status" value="2" >关闭</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="1" @if($bonusInfo->status == 1) checked @endif > 可用</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="2" @if($bonusInfo->status == 2) checked @endif >不可用</label></div>
                     </div>
                 </div>
 
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <button class="btn btn-primary btn-danger" id="btn-save">保存广告</button>&nbsp;
+                            <button class="btn btn-primary btn-danger" id="btn-save">保存红包</button>&nbsp;
                         </div>
                     </div>
                 </div><!-- panel-footer -->
@@ -147,11 +139,11 @@
 
             //开始日期
             $("#start_time,#end_time").datetimepicker({
-                format: 'yyyy-mm-dd hh:ii:ss',
+                format: 'yyyy-mm-dd',
                 autoclose: true,
-                minView: 0,
+                maxView: 4,
                 language:  'zh-CN',
-                minuteStep:1
+                minuteStep:3
             });
 
         </script>

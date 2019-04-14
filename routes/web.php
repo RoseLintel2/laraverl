@@ -362,7 +362,7 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
     Route::get("region/del/{id}","Admin\RegionController@del")->name("admin.region.del");
     ###################################[地区相关]##########################
 
-    ###################################[地区相关]##########################
+    ###################################[红包相关]##########################
     //列表
     Route::get("bonus/list/{id?}","Admin\BonusController@list")->name("admin.bonus.list");
     //添加
@@ -371,7 +371,21 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
     Route::post("bonus/doAdd","Admin\BonusController@doAdd")->name("admin.bonus.doAdd");
     //删除
     Route::get("bonus/del/{id}","Admin\BonusController@del")->name("admin.bonus.del");
-    ###################################[地区相关]##########################
+    //修改
+    Route::get("bonus/edit/{id}","Admin\BonusController@edit")->name("admin.bonus.edit");
+    //执行修改
+    Route::post("bonus/doEdit","Admin\BonusController@doEdit")->name("admin.bonus.doEdit");
+    ###################################[红包相关]##########################
+
+    ###################################[红包发放记录相关]##########################
+    //列表
+    Route::get("send/list","Admin\BonusController@UserBonusInfo")->name("admin.send.list");
+    //添加
+    Route::get("send/sendAdd/{id?}","Admin\BonusController@sendAdd")->name("admin.send.sendAdd");
+    //执行添加
+    Route::post("send/sendStore","Admin\BonusController@sendStore")->name("admin.send.sendStore");
+    ###################################[红包发放记录相关]##########################
+
 
 });
 

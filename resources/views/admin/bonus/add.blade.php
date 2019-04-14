@@ -33,13 +33,13 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/bonus/store" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/bonus/doAdd" method="post">
                 {{csrf_field()}}
 
                  <div class="form-group">
                     <label class="col-sm-3 control-label">红包名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="红包名称" class="form-control" name="bonus_name" value="" />
+                        <input type="text" placeholder="红包名称" class="form-control" name="honus_name" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,13 +63,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">发放开始时间</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="开始时间" id="start_time" class="form-control" name="send_start_date" value="" />
+                        <input type="text" placeholder="开始时间" id="start_time" class="form-control" name="send_start_time" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">发放结束时间</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="结束时间" class="form-control" id="end_time" name="send_end_date" value="" />
+                        <input type="text" placeholder="结束时间" class="form-control" id="end_time" name="send_end_time" value="" />
                     </div>
                 </div>
                 <div class="form-group">
